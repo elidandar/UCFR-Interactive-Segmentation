@@ -24,9 +24,6 @@ A script `download_datasets.sh` is prepared to download and organize required da
 
 | Dataset   |                      Description             |           Download Link              |
 |-----------|----------------------------------------------|:------------------------------------:|
-|MS COCO    |  118k images with 1.2M instances (train)     |  [official site][MSCOCO]             |
-|LVIS v1.0  |  100k images with 1.2M instances (total)     |  [official site][LVIS]               |
-|COCO+LVIS* |  99k images with 1.5M instances (train)      |  [original LVIS images][LVIS] + <br> [combined annotations][COCOLVIS_annotation] |
 |SBD        |  8498 images with 20172 instances for (train)<br>2857 images with 6671 instances for (test) |[official site][SBD]|
 |Grab Cut   |  50 images with one object each (test)       |  [GrabCut.zip (11 MB)][GrabCut]      |
 |Berkeley   |  96 images with 100 instances (test)         |  [Berkeley.zip (7 MB)][Berkeley]     |
