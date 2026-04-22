@@ -74,11 +74,11 @@ python scripts/evaluate_model.py NoBRS \
     --gpu=0 \
     --checkpoint=cocolvis_icl_vit_huge.pth \
     --datasets=GrabCut,Berkeley,DAVIS,PascalVOC,SBD \\
-    --cf-n=4 \\
-    --acf
+    --cf-n=1 \\
+    --cf-click 
 
 # cf-n: CFR steps
-# acf: adaptive CFR
+# cf-click: whether to do ucfr clicks
 ```
 
 ## Training
@@ -89,23 +89,16 @@ Please also download the pretrained SimpleClick models from [here](https://githu
 
 Use the following code to train a huge model on C+L: 
 ```
-python train.py models/plainvit_huge448_cocolvis.py \
-    --batch-size=32 \
+python train.py models/plainvit_base448_sbd.py \
+    --batch-size=140 \
     --ngpus=4
 ```
 
 ## Citation
 
 ```
-@article{sun2023cfricl,
-      title={CFR-ICL: Cascade-Forward Refinement with Iterative Click Loss for Interactive Image Segmentation}, 
-      author={Shoukun Sun and Min Xian and Fei Xu and Tiankai Yao and Luca Capriotti},
-      year={2023},
-      eprint={2303.05620},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
+
 ```
 
 ## Acknowledgement
-Our project is developed based on [RITM](https://github.com/SamsungLabs/ritm_interactive_segmentation) and [SimpleClick](https://github.com/uncbiag/SimpleClick)
+Our project is developed based on [SimpleClick](https://github.com/uncbiag/SimpleClick) and [ICL-CFR](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation)
