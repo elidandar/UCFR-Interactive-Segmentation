@@ -1,0 +1,44 @@
+INTERACTIVE_MODELS_PATH: "./weights"
+EXPS_PATH: "./experiments"
+
+# Evaluation datasets
+GRABCUT_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/GrabCut"
+BERKELEY_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/Berkeley"
+DAVIS_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/DAVIS"
+COCO_MVAL_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/COCO_MVal"
+PASCALVOC_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/VOC2012"
+SBD_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/SBD/dataset"
+BraTS_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/BraTS"
+OAIZIB_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/OAIZIB"
+ssTEM_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/ssTEM/"
+CHASEDB1_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/CHASEDB1/"
+
+
+# Train datasets
+#SBD_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/datasets/SBD/dataset"
+SBD_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/SBD/dataset"
+COCO_PATH: "./datasets/MSCOCO"
+LVIS_v1_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/LVIS"
+OPENIMAGES_PATH: "./datasets/OpenImages"
+PASCALVOC_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/VOC2012"
+ADE20K_PATH: "./datasets/ADE20K"
+PRECIPITATE_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Interactive_precipitates_segmentation/datasets/precipitates/data_all_classes_march_26/for_training/leave_one_out/leaveout_SI_HAADF_BF_0738_48000_x_BF"
+DIS5K_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/DIS5K"
+CRACK_PATH_old: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/crack_segmentation_dataset_old"
+CRACK_PATH: "/lfs/danq7270.ui/data/SEM/elijah/Iseg_datasets/crack_segmentation_dataset/combined_patches_ps448_overlap0"
+
+
+# You can download the weights for HRNet from the repository:
+# https://github.com/HRNet/HRNet-Image-Classification
+IMAGENET_PRETRAINED_MODELS:
+  MAE_BASE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/mae_pretrained/mae_pretrain_vit_base.pth"
+  MAE_LARGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/mae_pretrained/mae_pretrain_vit_large.pth"
+  MAE_HUGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/mae_pretrained/mae_pretrain_vit_huge.pth"
+  SBD_VIT_XTINY: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/sbd_vit_xtiny.pth"
+  SBD_VIT_BASE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/sbd_vit_base.pth"
+  SBD_EDGE_VIT_BASE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/edge_model_50_epochs0.pth"
+  SBD_VIT_LARGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/sbd_vit_large.pth"
+  SBD_VIT_HUGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/sbd_vit_huge.pth"
+  CL_VIT_BASE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/cocolvis_vit_base.pth"
+  CL_VIT_LARGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/cocolvis_vit_large.pth"
+  CL_VIT_HUGE: "/lfs/danq7270.ui/data/SEM/elijah/Original_InteractiveSegmentation/weights/simpleclick/cocolvis_vit_huge.pth"
