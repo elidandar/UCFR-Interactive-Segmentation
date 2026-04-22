@@ -1,7 +1,7 @@
-## [UCFR: Cascade-Forward Refinement with Iterative Click Loss for Interactive Image Segmentation](https://ojs.aaai.org/index.php/AAAI/article/view/28306)
+## [U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation]()
 
 <p align="center">
-  <img src="./assets/img/flowchart.png" alt="drawing", width="650"/>
+  <img src="./assets/img/model_n_icpr" alt="drawing", width="650"/>
 </p>
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-berkeley)](https://paperswithcode.com/sota/interactive-segmentation-on-berkeley?p=cfr-icl-cascade-forward-refinement-with)
