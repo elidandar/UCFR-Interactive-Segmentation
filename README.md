@@ -43,19 +43,14 @@ A script `download_datasets.sh` is prepared to download and organize required da
 
 An example script to run the demo. 
 ```
-python demo.py --checkpoint=weights/cocolvis_icl_vit_huge.pth --gpu 0
+python demo.py --checkpoint=weights/sbd_vit_base_ufcr.pth --gpu 0
 ```
 
 ## Evaluation
 
 Before evaluation, please download the datasets and models, and then configure the path in `config.yml`.
 
-Download our model, please download below 3 zipped files and extract before use:
-
-- [cocolvis_icl_vit_huge.pth.7z.001](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation/releases/download/v1.0/cocolvis_icl_vit_huge.pth.7z.001)
-- [cocolvis_icl_vit_huge.pth.7z.002](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation/releases/download/v1.0/cocolvis_icl_vit_huge.pth.7z.002)
-- [cocolvis_icl_vit_huge.pth.7z.003](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation/releases/download/v1.0/cocolvis_icl_vit_huge.pth.7z.003)
-
+Download our model trained model:
 
 
 
@@ -64,9 +59,9 @@ Use the following code to evaluate the huge model.
 ```
 python scripts/evaluate_model.py NoBRS \
     --gpu=0 \
-    --checkpoint=cocolvis_icl_vit_huge.pth \
-    --datasets=GrabCut,Berkeley,DAVIS,PascalVOC,SBD \\
-    --cf-n=1 \\
+    --checkpoint=sbd_vit_base_ufcr.pth \
+    --datasets=GrabCut,Berkeley,DAVIS,BraTS,OAIZIB,ssTEM,COCO_MVal,PascalVOC,SBD \
+    --cf-n=1 \
     --cf-click 
 
 # cf-n: CFR steps
