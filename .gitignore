@@ -2,7 +2,7 @@ isegm_datasets
 experiments
 pretrained_models/
 weights/
-datasets/
+#datasets/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
