@@ -4,11 +4,6 @@
   <img src="./assets/img/model_n_icpr.png" alt="drawing"/>
 </p>
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-berkeley)](https://paperswithcode.com/sota/interactive-segmentation-on-berkeley?p=cfr-icl-cascade-forward-refinement-with)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-davis)](https://paperswithcode.com/sota/interactive-segmentation-on-davis?p=cfr-icl-cascade-forward-refinement-with)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-pascal-voc)](https://paperswithcode.com/sota/interactive-segmentation-on-pascal-voc?p=cfr-icl-cascade-forward-refinement-with)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-sbd)](https://paperswithcode.com/sota/interactive-segmentation-on-sbd?p=cfr-icl-cascade-forward-refinement-with)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/cfr-icl-cascade-forward-refinement-with/interactive-segmentation-on-grabcut)](https://paperswithcode.com/sota/interactive-segmentation-on-grabcut?p=cfr-icl-cascade-forward-refinement-with)
 
 ## Environment
 Training and evaluation environment: Python 3.9, PyTorch 1.13.1, CUDA 11.0. Run the following command to install required packages.
@@ -84,7 +79,7 @@ Before training, please download the [MAE](https://github.com/facebookresearch/m
 
 Please also download the pretrained SimpleClick models from [here](https://github.com/uncbiag/SimpleClick).
 
-Use the following code to train a huge model on C+L: 
+Use the following code to train a base model on SBD: 
 ```
 python train.py models/plainvit_base448_sbd.py \
     --batch-size=140 \

@@ -40,14 +40,8 @@ python ./scripts/evaluate_model.py NoBRS \
 #--cf-click \
 #--iou-analysis \
 #--print-ious
-# cf-click  
-# GrabCut,Berkeley,DAVIS,BraTS,OAIZIB,ssTEM,COCO_MVal,PascalVOC,SBD
-# GrabCut,Berkeley,DAVIS,BraTS,OAIZIB,PascalVOC,COCO_MVal,SBD
-#GrabCut,Berkeley,DAVIS,PascalVOC,COCO_MVal,SBD,BraTS,OAIZIB   iou-analysis
-#GrabCut,Berkeley,DAVIS,BraTS,OAIZIB,COCO_MVal,PascalVOC,SBD  adaptive-radius
-#--cf-n=4 \
-#--acf
 # cf-n: CFR steps
+# cf-click: UCFR
 # acf: adaptive CFR
 
 let RUNTIME=$(date +%s)-$START
