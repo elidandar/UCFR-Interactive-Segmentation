@@ -15,7 +15,7 @@ class InteractiveDemoApp(ttk.Frame):
     def __init__(self, master, args, model):
         super().__init__(master)
         self.master = master
-        master.title("Interactive Segmentation Demo - U-CFR")
+        master.title("U-CFR Interactive Segmentation Demo")
         master.withdraw()
         master.update_idletasks()
         x = (master.winfo_screenwidth() - master.winfo_reqwidth()) / 2
@@ -44,6 +44,8 @@ class InteractiveDemoApp(ttk.Frame):
         self.state['predictor_params']['net_clicks_limit'].trace(mode='w', callback=self._change_brs_mode)
         self.state['predictor_params']['cascade_adaptive'].trace(mode='w', callback=self._change_brs_mode)
         self.state['predictor_params']['cascade_step'].trace(mode='w', callback=self._change_brs_mode)
+        self.state['predictor_params']['cascade_clicks'].trace(mode='w', callback=self._change_brs_mode)
+        
         self._change_brs_mode()
 
     def _init_state(self):
@@ -151,7 +153,7 @@ class InteractiveDemoApp(ttk.Frame):
         FocusCheckButton(self.cfr_options_frame, text='Adaptive U-CFR', command=self._reset_predictor,
                          variable=self.state['predictor_params']['cascade_adaptive']).grid(row=1, column=0, padx=10)
         
-        FocusCheckButton(self.cfr_options_frame, text='U-CFR Click', command=self._reset_predictor,
+        FocusCheckButton(self.cfr_options_frame, text='U-CFR', command=self._reset_predictor,
                          variable=self.state['predictor_params']['cascade_clicks']).grid(row=1, column=1, padx=10)
 
         self.cfr_step_label = tk.Label(self.cfr_options_frame, text="CFR")
@@ -164,9 +166,8 @@ class InteractiveDemoApp(ttk.Frame):
         self.cfr_options_frame.columnconfigure((0, 1), weight=1)
         
                     #---------------------#
-                    #-- End CFR options --#
+                    #-- End U- CFR options --#
                     #---------------------#
-                    
                     
 
         self.prob_thresh_frame = FocusLabelFrame(master, text="Predictions threshold")

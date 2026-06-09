@@ -54,7 +54,7 @@ Download our model trained model:
 
 
 
-Use the following code to evaluate the huge model.
+Use the following code to evaluate the model.
 
 ```
 python scripts/evaluate_model.py NoBRS \

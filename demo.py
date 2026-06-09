@@ -10,6 +10,9 @@ from isegm.utils import exp
 from isegm.inference import utils
 from interactive_demo.app import InteractiveDemoApp
 
+import sys
+import os
+
 def main():
     args, cfg = parse_args()
 
@@ -25,7 +28,7 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--checkpoint', type=str, default = './weights/edge_model_50_epochs.pth', #./weights/icl/cocolvis_icl_vit_huge.pth
+    parser.add_argument('--checkpoint', type=str, default = './weights/sbd_vit_base_ufcr.pth',
                         required=False,
                         help='The path to the checkpoint. '
                              'This can be a relative path (relative to cfg.INTERACTIVE_MODELS_PATH) '

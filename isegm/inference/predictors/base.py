@@ -142,7 +142,7 @@ class BasePredictor(object):
             #pdb.set_trace()
             if self.cascade_clicks:
                 if step > 0:
-                    #print('Using U-CFR Click')
+                    print('Using U-CFR Click')
                     #self.on_cascade = True
                     if step == 1:
                         cfr_clicker._reinforce_user_click(clicker, cfr_clicker, self.original_image.shape[2:])
@@ -157,7 +157,6 @@ class BasePredictor(object):
                     
                     #pdb.set_trace()
                     if new_clicks:  # only add if confident
-
                         # Store debug info
                         self.g_cfr_debug_info['pseudo_clicks_per_step'].append(new_clicks)
                         self.g_cfr_debug_info['uncertainty_maps_per_step'].append(uncertainty_map)
