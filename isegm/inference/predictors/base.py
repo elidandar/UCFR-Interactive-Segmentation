@@ -142,7 +142,7 @@ class BasePredictor(object):
             #pdb.set_trace()
             if self.cascade_clicks:
                 if step > 0:
-                    print('Using U-CFR Click')
+                    #print('Using U-CFR Click')
                     #self.on_cascade = True
                     if step == 1:
                         cfr_clicker._reinforce_user_click(clicker, cfr_clicker, self.original_image.shape[2:])
@@ -223,6 +223,7 @@ class BasePredictor(object):
         points_nd = self.get_points_nd(clicks_lists)
         
         #pdb.set_trace()
+        #print("DEBUG SHAPE:", image_nd.shape, "CLICKS:", len(clicks_lists[0]))
         output = self.net(image_nd, points_nd)#, small_radius_override=None)
         
         result = {

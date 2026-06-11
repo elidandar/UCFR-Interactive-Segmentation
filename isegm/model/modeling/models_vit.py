@@ -252,11 +252,33 @@ class VisionTransformer(nn.Module):
         return x
 
     def forward_backbone(self, x, additional_features=None, shuffle=False):
+        # Store dynamic grid_size based on input resolution
+        H, W = x.shape[2], x.shape[3]
+        patch_size = self.patch_embed.patch_size
+        dynamic_grid_size = (H // patch_size[0], W // patch_size[1])
+        
+        # Calculate orig_grid_size from self.pos_embed shape (784 patches is 28x28)
+        orig_num_patches = self.pos_embed.shape[-2] - 1
+        orig_grid_h = int(orig_num_patches ** 0.5)
+        orig_grid_size = (orig_grid_h, orig_grid_h)
+
+        # Update self.patch_embed.grid_size to dynamic_grid_size
+        self.patch_embed.grid_size = dynamic_grid_size
+
         x = self.patch_embed(x)
         if additional_features is not None:
             x += additional_features
 
-        x = self.pos_drop(x + self.pos_embed[:, 1:])
+        # Dynamically interpolate pos_embed if grid size changes
+        pos_tokens = self.pos_embed[:, 1:]
+        if dynamic_grid_size != orig_grid_size:
+            pos_tokens = pos_tokens.reshape(1, orig_grid_size[0], orig_grid_size[1], -1).permute(0, 3, 1, 2)
+            pos_tokens = torch.nn.functional.interpolate(
+                pos_tokens, size=dynamic_grid_size, mode='bicubic', align_corners=False
+            )
+            pos_tokens = pos_tokens.permute(0, 2, 3, 1).flatten(1, 2)
+
+        x = self.pos_drop(x + pos_tokens)
         num_blocks = len(self.blocks)
         assert num_blocks % 4 == 0
 
@@ -273,14 +295,50 @@ class VisionTransformer(nn.Module):
             for i in range(1, num_blocks + 1):
                 if i % num_blocks_per_group:
                     if not is_patchified:
+                        # Before patchifying, check if dynamic_grid_size is divisible by window size.
+                        # Window size is 14 grid tokens (win_h_grid, win_w_grid).
+                        grid_h, grid_w = dynamic_grid_size
+                        win_h_grid = 224 // patch_size[0]
+                        win_w_grid = 224 // patch_size[1]
+                        
+                        padded_grid_h = ((grid_h + win_h_grid - 1) // win_h_grid) * win_h_grid
+                        padded_grid_w = ((grid_w + win_w_grid - 1) // win_w_grid) * win_w_grid
+                        
+                        # Pad token grid if needed
+                        if padded_grid_h > grid_h or padded_grid_w > grid_w:
+                            B, _, C = x.shape
+                            x_2d = x.transpose(1, 2).view(B, C, grid_h, grid_w)
+                            x_2d = torch.nn.functional.pad(x_2d, (0, padded_grid_w - grid_w, 0, padded_grid_h - grid_h))
+                            x = x_2d.flatten(2).transpose(1, 2)
+                        
+                        self.patch_embed.grid_size = (padded_grid_h, padded_grid_w)
                         x = self.patchify(x)
                         is_patchified = True
                     else:
                         pass # do nothing
                 else:
-                    x = self.unpatchify(x)
-                    is_patchified = False
+                    if is_patchified:
+                        x = self.unpatchify(x)
+                        is_patchified = False
+                        
+                        # Unpad token grid if it was padded
+                        grid_h, grid_w = dynamic_grid_size
+                        win_h_grid = 224 // patch_size[0]
+                        win_w_grid = 224 // patch_size[1]
+                        padded_grid_h = ((grid_h + win_h_grid - 1) // win_h_grid) * win_h_grid
+                        padded_grid_w = ((grid_w + win_w_grid - 1) // win_w_grid) * win_w_grid
+                        
+                        if padded_grid_h > grid_h or padded_grid_w > grid_w:
+                            B, _, C = x.shape
+                            x_2d = x.transpose(1, 2).view(B, C, padded_grid_h, padded_grid_w)
+                            x_2d = x_2d[:, :, :grid_h, :grid_w]
+                            x = x_2d.flatten(2).transpose(1, 2)
+                            
+                        self.patch_embed.grid_size = dynamic_grid_size
                 x = self.blocks[i-1](x)
+            
+            # Final check to ensure we restore the correct dynamic_grid_size at the end of forward_backbone
+            self.patch_embed.grid_size = dynamic_grid_size
         return x
 
     def forward(self, x):
