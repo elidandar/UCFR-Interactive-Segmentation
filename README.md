@@ -8,6 +8,8 @@
 ## Environment
 Training and evaluation environment: Python 3.9, PyTorch 1.13.1, CUDA 11.0. Run the following command to install required packages.
 ```
+conda create -n iseg python=3.9
+conda activate iseg
 pip3 install -r requirements.txt
 ```
 
@@ -50,7 +52,13 @@ python demo.py --checkpoint=weights/sbd_vit_base_ufcr.pth --gpu 0
 
 Before evaluation, please download the datasets and models, and then configure the path in `config.yml`.
 
-Download our model trained model:
+Download our trained model:
+- [sbd_vit_base_ufcr.pth](https://github.com/elidandar/UCFR-Interactive-Segmentation/releases/download/v0.1.0/sbd_vit_base_ufcr.pth) (377 MB)
+
+Save the weight file to the `weights/` directory. Alternatively, you can download it via the script:
+```bash
+python weights/download_models.py
+```
 
 
 
@@ -66,6 +74,8 @@ python scripts/evaluate_model.py NoBRS \
 
 # cf-n: CFR steps
 # cf-click: whether to do ucfr clicks
+
+or submit the evaluation job to the cluster with the script ./iseg_evaluate.sh
 ```
 
 ## Training
@@ -79,6 +89,9 @@ Use the following code to train a base model on SBD:
 python train.py models/plainvit_base448_sbd.py \
     --batch-size=140 \
     --ngpus=4
+
+or 
+Submit the training job to the cluster with the script ./iseg_train.sh
 ```
 
 ## Citation

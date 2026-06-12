@@ -1,12 +1,12 @@
 #!/bin/bash -l
 # # Resource request
-#SBATCH --job-name=UCFR_eval
+#SBATCH --job-name=iseg_train
 #SBATCH -p gpu-mxian
 #SBATCH --gres=gpu:1
 #SBATCH --nodelist=node01
 #SBATCH --mem=32G
-#SBATCH --output=./logs/UCFR_eval-%x-%j.txt     # where to write output, %x give job name, %j names job id
-#SBATCH --error=./logs/UCFR_eval-%x-%j.err      # where to write slurm error
+#SBATCH --output=./logs/sbd_vit_base_55_epochs-%x-%j.txt     # where to write output, %x give job name, %j names job id
+#SBATCH --error=./logs/sbd_vit_base_55_epochs-%x-%j.err      # where to write slurm error
 
 # change directory to directory we submit job from:
 cd $SLURM_SUBMIT_DIR
@@ -25,25 +25,14 @@ echo "Current node: ${SLURM_NODELIST}"
 
 START=$(date +%s)
 
-python ./scripts/evaluate_model.py NoBRS \
-    --gpus=0 \
-    --checkpoint=./weights/sbd_vit_base_ufcr.pth \
-    --datasets=GrabCut,Berkeley,DAVIS,BraTS,OAIZIB,ssTEM,COCO_MVal,PascalVOC,SBD \
-    --print-ious \
-    --iou-analysis \
-    --thresh=0.5
-    
 
-#--cf-n=1 \
-#--cf-click \
-#--iou-analysis \ 
-#--print-ious \
+python ./train.py models/plainvit_base448_sbd.py \
+    --batch-size=140 \
+    --ngpus=4 \
+    --workers=8 \
+    --epochs=55 \
+    --exp-name=sbd_vit_base_55_epochs
 
-# iou-analysis: Will go through all clicks for each image even if target iou achieved
-# print-ious: Will print ious for all clicks even if target iou is not achieved
-# cf-n: CFR steps
-# cf-click: UCFR
-# acf: adaptive CFR
 
 let RUNTIME=$(date +%s)-$START
 echo "Training time: $RUNTIME"
