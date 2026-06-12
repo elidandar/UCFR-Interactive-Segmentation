@@ -43,9 +43,10 @@ class InteractiveDemoApp(ttk.Frame):
         self.state['zoomin_params']['expansion_ratio'].trace(mode='w', callback=self._reset_predictor)
         self.state['predictor_params']['net_clicks_limit'].trace(mode='w', callback=self._change_brs_mode)
         self.state['predictor_params']['cascade_adaptive'].trace(mode='w', callback=self._change_brs_mode)
-        self.state['predictor_params']['cascade_step'].trace(mode='w', callback=self._change_brs_mode)
+        self.state['predictor_params']['cascade_step'].trace(mode='w', callback=self._on_cascade_step_changed)
         self.state['predictor_params']['cascade_clicks'].trace(mode='w', callback=self._change_brs_mode)
         
+        self._on_cascade_step_changed()
         self._change_brs_mode()
 
     def _init_state(self):
@@ -60,7 +61,7 @@ class InteractiveDemoApp(ttk.Frame):
             
             'predictor_params': {
                 'net_clicks_limit': tk.IntVar(value=8),
-                'cascade_step': tk.IntVar(value=1),
+                'cascade_step': tk.IntVar(value=0),
                 'cascade_adaptive': tk.BooleanVar(value=False),
                 'cascade_clicks': tk.BooleanVar(value=True)
             },
@@ -150,25 +151,26 @@ class InteractiveDemoApp(ttk.Frame):
         self.cfr_options_frame = FocusLabelFrame(master, text=" Uncertainty Guided Cascade-Forward Refinement")
         self.cfr_options_frame.pack(side=tk.TOP, fill=tk.X, padx=10, pady=3)
 
-        FocusCheckButton(self.cfr_options_frame, text='Adaptive U-CFR', command=self._reset_predictor,
-                         variable=self.state['predictor_params']['cascade_adaptive']).grid(row=1, column=0, padx=10)
+        self.chk_cfr_adaptive = FocusCheckButton(self.cfr_options_frame, text='Adaptive U-CFR', command=self._reset_predictor,
+                         variable=self.state['predictor_params']['cascade_adaptive'])
+        self.chk_cfr_adaptive.grid(row=1, column=0, padx=10)
         
-        FocusCheckButton(self.cfr_options_frame, text='U-CFR', command=self._reset_predictor,
-                         variable=self.state['predictor_params']['cascade_clicks']).grid(row=1, column=1, padx=10)
+        self.chk_cfr_clicks = FocusCheckButton(self.cfr_options_frame, text='U-CFR', command=self._reset_predictor,
+                         variable=self.state['predictor_params']['cascade_clicks'])
+        self.chk_cfr_clicks.grid(row=1, column=1, padx=10)
 
         self.cfr_step_label = tk.Label(self.cfr_options_frame, text="CFR")
         self.cfr_step_label.grid(row=0, column=1, pady=2, sticky='e')
-        self.cfr_step_entry = BoundedNumericalEntry(self.cfr_options_frame, variable=self.state['predictor_params']['cascade_step'],
-                                                    min_value=1, max_value=1000, vartype=int,
-                                                    name='cascade_step')
+        self.cfr_step_entry = ttk.Spinbox(self.cfr_options_frame, from_=0, to=1000,
+                                          textvariable=self.state['predictor_params']['cascade_step'],
+                                          width=5)
         self.cfr_step_entry.grid(row=0, column=2, padx=10, pady=2, sticky='w')
 
         self.cfr_options_frame.columnconfigure((0, 1), weight=1)
         
                     #---------------------#
                     #-- End U- CFR options --#
-                    #---------------------#
-                    
+                    #---------------------# 
 
         self.prob_thresh_frame = FocusLabelFrame(master, text="Predictions threshold")
         self.prob_thresh_frame.pack(side=tk.TOP, fill=tk.X, padx=10, pady=3)
@@ -268,6 +270,16 @@ class InteractiveDemoApp(ttk.Frame):
 
         self._update_image()
 
+    def _on_cascade_step_changed(self, *args):
+        try:
+            val = self.state['predictor_params']['cascade_step'].get()
+        except tk.TclError:
+            val = 0
+        state = tk.NORMAL if val > 0 else tk.DISABLED
+        self.chk_cfr_adaptive.configure(state=state)
+        self.chk_cfr_clicks.configure(state=state)
+        self._change_brs_mode()
+
     def _change_brs_mode(self, *args):
         self._reset_predictor()
 
@@ -278,6 +290,10 @@ class InteractiveDemoApp(ttk.Frame):
         cascade_step = self.state['predictor_params']['cascade_step'].get() + 1
         cascade_adaptive = self.state['predictor_params']['cascade_adaptive'].get()
         cascade_clicks = self.state['predictor_params']['cascade_clicks'].get()
+        
+        if cascade_step <= 1:
+            cascade_adaptive = False
+            cascade_clicks = False
 
         if self.state['zoomin_params']['use_zoom_in'].get():
             zoomin_params = {
