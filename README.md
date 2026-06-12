@@ -6,18 +6,20 @@
 
 
 ## Environment
-Training and evaluation environment: Python 3.9, PyTorch 1.13.1, CUDA 11.0. Run the following command to install required packages.
-```
+Training and evaluation environment: Python 3.9, PyTorch 1.13.1, CUDA 11.0/11.7. Run the following command to install the required packages.
+```bash
 conda create -n iseg python=3.9
 conda activate iseg
 pip3 install -r requirements.txt
 ```
 
-You need to configue the paths to the datasets in `config.yml` before training or testing. 
+> [!NOTE]
+> **Cython Compilation**: The project uses Cython for fast distance map calculation (`isegm/utils/cython/_get_dist_maps.pyx`). This code is compiled **automatically at runtime** on the first import via `pyximport`—no manual compilation step is required. Ensure that a standard C++ compiler (e.g., GCC, Clang, or MSVC) is installed on your system.
 
-## Dataset
+Before training or evaluation, update the dataset paths in [config.yml](/config.yml) to point to your local dataset directories.
 
-A script `download_datasets.sh` is prepared to download and organize required datasets.
+## Datasets
+Please download the desired evaluation datasets using the links in the table below and configure their paths in `config.yml`.
 
 | Dataset   |                      Description             |           Download Link              |
 |-----------|----------------------------------------------|:------------------------------------:|
@@ -43,9 +45,10 @@ A script `download_datasets.sh` is prepared to download and organize required da
   <img src="./assets/img/demo1.gif" alt="drawing", width="500"/>
 </p>
 
-An example script to run the demo. 
-```
-python demo.py --checkpoint=weights/sbd_vit_base_ufcr.pth --gpu 0
+You can launch the interactive demo using the Tkinter interface.
+
+```bash
+python demo.py --checkpoint=weights/sbd_vit_base_ufcr.pth --cpu
 ```
 
 ## Evaluation
