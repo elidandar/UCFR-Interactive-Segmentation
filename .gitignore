@@ -133,3 +133,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+demo_pyside6.py
+interactive_demo_pyside/
+weights/.DS_Store
+weights/sbd_vit_base_ufcr.pth
