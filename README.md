@@ -1,4 +1,9 @@
-## [U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation]()
+## [U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation](https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42)
+
+<p align="center">
+  <a href="https://doi.org/10.1007/978-3-032-31666-0_42"><img src="https://img.shields.io/badge/DOI-10.1007%2F978--3--032--31666--0__42-blue.svg" alt="DOI"></a>
+  <a href="https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42"><img src="https://img.shields.io/badge/Springer-Link-0075A2.svg" alt="Springer Link"></a>
+</p>
 
 <p align="center">
   <img src="./assets/img/model_n_icpr.png" alt="drawing"/>
@@ -99,8 +104,23 @@ Submit the training job to the cluster with the script ./iseg_train.sh
 
 ## Citation
 
-```
+If you find U-CFR useful in your research, please cite our paper:
 
+```bibtex
+@InProceedings{10.1007/978-3-032-31666-0_42,
+  author    = {Danquah Darko, Elijah and Xian, Min and Soule, Terence and Yao, Tiankai and William Anderson, Matthew},
+  editor    = {De Marsico, Maria and Ho, Tin Kam and Jurie, Frederic and Liu, Cheng-Lin and Lopresti, Daniel and Nystr{\"o}m, Ingela and Ogier, Jean-Marc and Ross, Arun and Wang, Liang},
+  title     = {U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation},
+  booktitle = {Pattern Recognition},
+  series    = {Lecture Notes in Computer Science},
+  year      = {2027},
+  publisher = {Springer Nature Switzerland},
+  address   = {Cham},
+  pages     = {645--660},
+  doi       = {10.1007/978-3-032-31666-0_42},
+  url       = {https://doi.org/10.1007/978-3-032-31666-0_42},
+  isbn      = {978-3-032-31666-0}
+}
 ```
 
 ## Acknowledgement

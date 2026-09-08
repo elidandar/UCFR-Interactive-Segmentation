@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this software or method in your research, please cite it as below."
+title: "U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation"
+authors:
+  - family-names: "Danquah Darko"
+    given-names: "Elijah"
+  - family-names: "Xian"
+    given-names: "Min"
+  - family-names: "Soule"
+    given-names: "Terence"
+  - family-names: "Yao"
+    given-names: "Tiankai"
+  - family-names: "William Anderson"
+    given-names: "Matthew"
+preferred-citation:
+  type: conference-paper
+  authors:
+    - family-names: "Danquah Darko"
+      given-names: "Elijah"
+    - family-names: "Xian"
+      given-names: "Min"
+    - family-names: "Soule"
+      given-names: "Terence"
+    - family-names: "Yao"
+      given-names: "Tiankai"
+    - family-names: "William Anderson"
+      given-names: "Matthew"
+  title: "U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation"
+  collection-title: "Pattern Recognition"
+  conference:
+    name: "International Conference on Pattern Recognition (ICPR)"
+  series: "Lecture Notes in Computer Science"
+  year: 2027
+  start: 645
+  end: 660
+  publisher:
+    name: "Springer Nature Switzerland"
+    address: "Cham"
+  doi: "10.1007/978-3-032-31666-0_42"
+  url: "https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42"
+  isbn: "978-3-032-31666-0"
