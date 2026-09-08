@@ -10,9 +10,10 @@
   <img src="./assets/img/model_n_icpr.png" alt="drawing"/>
 </p>
 
-
 ## Environment
+
 Training and evaluation environment: Python 3.9, PyTorch 1.13.1, CUDA 11.0/11.7. Run the following command to install the required packages.
+
 ```bash
 conda create -n iseg python=3.9
 conda activate iseg
@@ -25,28 +26,20 @@ pip3 install -r requirements.txt
 Before training or evaluation, update the dataset paths in [config.yml](/config.yml) to point to your local dataset directories.
 
 ## Datasets
+
 Please download the desired evaluation datasets using the links in the table below and configure their paths in `config.yml`.
 
-| Dataset   |                      Description             |           Download Link              |
-|-----------|----------------------------------------------|:------------------------------------:|
-|SBD        |  8498 images with 20172 instances for (train)<br>2857 images with 6671 instances for (test) |[official site][SBD]|
-|Grab Cut   |  50 images with one object each (test)       |  [GrabCut.zip (11 MB)][GrabCut]      |
-|Berkeley   |  96 images with 100 instances (test)         |  [Berkeley.zip (7 MB)][Berkeley]     |
-|DAVIS      |  345 images with one object each (test)      |  [DAVIS.zip (43 MB)][DAVIS]          |
-|Pascal VOC |  1449 images with 3417 instances (test)      |  [official site][PascalVOC]          |
-|COCO_MVal  |  800 images with 800 instances (test)        |  [COCO_MVal.zip (127 MB)][COCO_MVal] |
-
-[MSCOCO]: https://cocodataset.org/#download
-[LVIS]: https://www.lvisdataset.org/dataset
-[SBD]: http://home.bharathh.info/pubs/codes/SBD/download.html
-[GrabCut]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/GrabCut.zip
-[Berkeley]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/Berkeley.zip
-[DAVIS]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/DAVIS.zip
-[PascalVOC]: http://host.robots.ox.ac.uk/pascal/VOC/
-[COCOLVIS_annotation]: https://github.com/saic-vul/ritm_interactive_segmentation/releases/download/v1.0/cocolvis_annotation.tar.gz
-[COCO_MVal]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/COCO_MVal.zip
+| Dataset    | Description                                                                            |            Download Link            |
+| ---------- | -------------------------------------------------------------------------------------- | :---------------------------------: |
+| SBD        | 8498 images with 20172 instances for (train)2857 images with 6671 instances for (test) |        [official site][SBD]        |
+| Grab Cut   | 50 images with one object each (test)                                                  |   [GrabCut.zip (11 MB)][GrabCut]   |
+| Berkeley   | 96 images with 100 instances (test)                                                    |   [Berkeley.zip (7 MB)][Berkeley]   |
+| DAVIS      | 345 images with one object each (test)                                                 |     [DAVIS.zip (43 MB)][DAVIS]     |
+| Pascal VOC | 1449 images with 3417 instances (test)                                                 |     [official site][PascalVOC]     |
+| COCO_MVal  | 800 images with 800 instances (test)                                                   | [COCO_MVal.zip (127 MB)][COCO_MVal] |
 
 ## Demo
+
 <p align="center">
   <img src="./assets/img/demo1.gif" alt="drawing", width="500"/>
 </p>
@@ -62,14 +55,14 @@ python demo.py --checkpoint=weights/sbd_vit_base_ufcr.pth --cpu
 Before evaluation, please download the datasets and models, and then configure the path in `config.yml`.
 
 Download our trained model:
+
 - [sbd_vit_base_ufcr.pth](https://github.com/elidandar/UCFR-Interactive-Segmentation/releases/download/v0.1.0/sbd_vit_base_ufcr.pth) (377 MB)
 
 Save the weight file to the `weights/` directory. Alternatively, you can download it via the script:
+
 ```bash
 python weights/download_models.py
 ```
-
-
 
 Use the following code to evaluate the model.
 
@@ -93,7 +86,8 @@ Before training, please download the [MAE](https://github.com/facebookresearch/m
 
 Please also download the pretrained SimpleClick models from [here](https://github.com/uncbiag/SimpleClick).
 
-Use the following code to train a base model on SBD: 
+Use the following code to train a base model on SBD:
+
 ```
 python train.py models/plainvit_base448_sbd.py \
     --batch-size=140 \
@@ -136,8 +130,16 @@ Or cite the arXiv preprint:
 }
 ```
 
-## Contact
-For questions or issues regarding U-CFR, please feel free to open a GitHub issue or contact Elijah Danquah Darko at [edanquahdarko@uidaho.edu](mailto:edanquahdarko@uidaho.edu).
-
 ## Acknowledgement
+
 Our project is developed based on [SimpleClick](https://github.com/uncbiag/SimpleClick) and [ICL-CFR](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation)
+
+[MSCOCO]: https://cocodataset.org/#download
+[LVIS]: https://www.lvisdataset.org/dataset
+[SBD]: http://home.bharathh.info/pubs/codes/SBD/download.html
+[GrabCut]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/GrabCut.zip
+[Berkeley]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/Berkeley.zip
+[DAVIS]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/DAVIS.zip
+[PascalVOC]: http://host.robots.ox.ac.uk/pascal/VOC/
+[COCOLVIS_annotation]: https://github.com/saic-vul/ritm_interactive_segmentation/releases/download/v1.0/cocolvis_annotation.tar.gz
+[COCO_MVal]: https://github.com/saic-vul/fbrs_interactive_segmentation/releases/download/v1.0/COCO_MVal.zip
