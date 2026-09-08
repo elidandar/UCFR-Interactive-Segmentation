@@ -47,3 +47,10 @@ preferred-citation:
   doi: "10.1007/978-3-032-31666-0_42"
   url: "https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42"
   isbn: "978-3-032-31666-0"
+identifiers:
+  - type: doi
+    value: "10.1007/978-3-032-31666-0_42"
+    description: "Official Springer LNCS publication DOI"
+  - type: other
+    value: "arXiv:2607.20705"
+    description: "arXiv preprint"

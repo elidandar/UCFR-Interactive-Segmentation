@@ -1,6 +1,7 @@
 ## [U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation](https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42)
 
 <p align="center">
+  <a href="https://arxiv.org/abs/2607.20705"><img src="https://img.shields.io/badge/arXiv-2607.20705-b31b1b.svg" alt="arXiv"></a>
   <a href="https://doi.org/10.1007/978-3-032-31666-0_42"><img src="https://img.shields.io/badge/DOI-10.1007%2F978--3--032--31666--0__42-blue.svg" alt="DOI"></a>
   <a href="https://link.springer.com/chapter/10.1007/978-3-032-31666-0_42"><img src="https://img.shields.io/badge/Springer-Link-0075A2.svg" alt="Springer Link"></a>
 </p>
@@ -122,6 +123,21 @@ If you find U-CFR useful in your research, please cite our paper:
   isbn      = {978-3-032-31666-0}
 }
 ```
+
+Or cite the arXiv preprint:
+
+```bibtex
+@article{danquahdarko2026ucfr,
+  title     = {U-CFR: Uncertainty-Guided Cascade Forward Refinement for Interactive Segmentation},
+  author    = {Danquah Darko, Elijah and Xian, Min and Soule, Terence and Yao, Tiankai and William Anderson, Matthew},
+  journal   = {arXiv preprint arXiv:2607.20705},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2607.20705}
+}
+```
+
+## Contact
+For questions or issues regarding U-CFR, please feel free to open a GitHub issue or contact Elijah Danquah Darko at [edanquahdarko@uidaho.edu](mailto:edanquahdarko@uidaho.edu).
 
 ## Acknowledgement
 Our project is developed based on [SimpleClick](https://github.com/uncbiag/SimpleClick) and [ICL-CFR](https://github.com/TitorX/CFR-ICL-Interactive-Segmentation)
